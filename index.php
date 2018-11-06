@@ -9,7 +9,7 @@
     <meta name="author" content="">
 
     <?php 
-      include_once 'dbConfig.php';
+      include 'dbConfig.php';
     ?>
     <title>SKELETONS ON SKATEBORDS</title>
 
@@ -222,15 +222,16 @@
 
             <?php 
               if(isset($_POST['subscribe'])){
-                $sql = "INSERT INTO sub_emails (email)
-                        VALUES ('".$_POST["email"]."')";
-
+                $sql = "INSERT INTO sub_emails (sub_emails)
+                        VALUES ('".$_POST["sub_mail"]."')";
+                            error_reporting(E_ALL);
+                            ini_set('display_errors', 1);
                 $result = mysqli_query($conn,$sql);
               }
             ?>
 
-            <form class="form-inline d-flex">
-              <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="inputEmail" placeholder="Введите ваш почтовый адрес..." name = "email">
+            <form class="form-inline d-flex" action="index.php" method="post">
+              <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0"  placeholder="Введите ваш почтовый адрес..." name = "sub_mail">
               <button type="button" class="btn btn-primary mx-auto" data-toggle="modal" data-target="#exampleModal" name = "subscribe">Подписаться</button>
             </form>
 
